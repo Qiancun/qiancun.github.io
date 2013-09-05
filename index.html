@@ -1,0 +1,32 @@
+---
+layout: default
+title: MyBlog
+---
+
+<div id="home">
+  <h1>Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo;<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  
+  {{ site.baseurl }}
+  {{ site.url }}
+  {{ post.url }}
+
+  <h1>Highlighted Talks</h1>
+  <ul class="posts">
+    <li><span>09 Nov 2011</span> &raquo; <a href="http://vimeo.com/39016099">Video: RubyConf Argentina - Optimizing For Happiness</a></li>
+  </ul>
+
+  <h1>Other Interviews, Talks, Etc</h1>
+  <ul class="posts">
+    <li><span>25 Jul 2013</span> &raquo; <a href="http://www.youtube.com/watch?v=7DoB0SCUtOk&list=SP055Epbe6d5aclKNAa8msO1VvDOJ8sYlS&index=23">Video: O'Reilly Media - OSCON 2013 Interview</a></li>
+  </ul>
+
+  <h1>Prominent Open Source Projects</h1>
+  <ul class="posts">
+    <li><a href="http://github.com/github/gollum/">Gollum:</a> A simple, Git-powered wiki with a sweet API and local frontend.</li>
+  </ul>
+</div>

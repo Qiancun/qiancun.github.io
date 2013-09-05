@@ -1,0 +1,4 @@
+baseurl: /
+url: http://qiancun.github.io/blog
+markdown: rdiscount
+pygments: true
