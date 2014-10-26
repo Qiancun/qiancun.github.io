@@ -11,7 +11,7 @@ HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception;
 再来看一下HanlderMapping的类层次结构图，
 
 
-[icon](http://sh.yun.ftn.qq.com/ftn_handler/9557fed27416423aa322e6f34d8fd552134a7a7e3bc77cadc901acc2e06eb44b/?fname=hanlderMapping.jpg)
+[icon](http://qiancun.github.io/pic/handlermapping_arc.jpg)
 
 
 * __AbstractHandlerMapping:__ 为HandlerMapping提供了基础实现，提供了默认的order、默认的handler、默认的interceptors，还有两个后面在url匹配时都要用到的类：UrlPathHelper，AntPathMatcher。
