@@ -1,5 +1,15 @@
+---
+layout: post
+title:  "springmvc-handlermapping解析"
+date:   2013-01-05 22:37:00
+categories: Note
+---
+
+
 # HandlerMapping解析
 
+
+## HanlerMaping
 HandlerMapping是一个接口，接口只有一个方法：
 
 ```
