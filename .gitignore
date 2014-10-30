@@ -2,3 +2,6 @@ _drafts/
 _site/
 .DS_Store
 *.swp
+.idea/
+*.iml
+images/_site/

@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: post
 title:  "springmvc-handlerAdapter解析"
 date:   2013-01-14 22:37:00
-categories: Note
+description: HandlerAdapter源码分析
+categories: spring
 ---
 
 #HandlerAdapter解析
@@ -22,7 +23,7 @@ long getLastModified(HttpServletRequest request, Object handler);
 ## HandlerAdapter层次结构
 
 HandlerAdapter的类层次结构如下：<br>
-![image](http://qiancun.github.io/pic/HandlerAdapter.png)
+![image](http://qiancun.github.io/images/HandlerAdapter.png)
 
 * __SimpleControllerHandlerAdapter :__ 将handler转型Controller，并将流程控制转到handler的handleRequest方法中。
 * __HttpRequestHandlerAdapter :__ 将handler转型HttpRequestHandler，并将流程控制交给HttpRequestHandler的handleRequest方法

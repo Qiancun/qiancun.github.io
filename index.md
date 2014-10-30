@@ -2,17 +2,17 @@
 layout: home
 ---
 
-<div class="index-content concurrency">
+<div class="index-content Spring">
     <div class="section">
         <ul class="artical-cate">
-            <li class="on" style="text-align:left"><a href="/"><span>Concurrency</span></a></li>
-            <li style="text-align:left"><a href="/scala"><span>Scala</span></a></li>
+            <li class="on" style="text-align:left"><a href="/"><span>Spring</span></a></li>
+            <li style="text-align:left"><a href="/scala"><span>暂位符</span></a></li>
         </ul>
 
         <div class="cate-bar"><span id="cateBar"></span></div>
 
         <ul class="artical-list">
-        {% for post in site.categories.concurrency %}
+        {% for post in site.categories.spring %}
             <li>
                 <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
                 <div class="title-desc">{{ post.description }}</div>
