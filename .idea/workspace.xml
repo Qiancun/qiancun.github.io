@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c4c0fa4-0868-46de-ac31-5016f15ca2e2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/css/default.css" afterPath="$PROJECT_DIR$/_site/css/default.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="qiancun.github.io.iws" />
@@ -53,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/_site/css/default.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.21265142" vertical-offset="1734" max-vertical-offset="4202">
-              <caret line="86" column="95" selection-start-line="86" selection-start-column="95" selection-end-line="86" selection-end-column="95" />
+              <caret line="86" column="97" selection-start-line="86" selection-start-column="97" selection-end-line="86" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -526,7 +525,7 @@
       <changelist id="2c4c0fa4-0868-46de-ac31-5016f15ca2e2" name="Default" comment="" />
       <created>1414639095734</created>
       <updated>1414639095734</updated>
-      <workItem from="1414639097244" duration="14987000" />
+      <workItem from="1414639097244" duration="15078000" />
     </task>
     <task id="LOCAL-00001" summary="修改样式">
       <created>1414645029937</created>
@@ -536,7 +535,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14987000" />
+    <option name="totallyTimeSpent" value="15078000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1895" height="1150" extended-state="0" />
@@ -753,7 +752,7 @@
     <entry file="file://$PROJECT_DIR$/_site/css/default.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21265142" vertical-offset="1734" max-vertical-offset="4202">
-          <caret line="86" column="95" selection-start-line="86" selection-start-column="95" selection-end-line="86" selection-end-column="95" />
+          <caret line="86" column="97" selection-start-line="86" selection-start-column="97" selection-end-line="86" selection-end-column="97" />
           <folding />
         </state>
       </provider>
