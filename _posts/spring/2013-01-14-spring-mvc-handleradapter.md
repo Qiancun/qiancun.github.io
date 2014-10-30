@@ -12,13 +12,11 @@ categories: spring
 
 handlerAdapter是springmvc另一个重要的接口，它负责封装了handler的调用逻辑，对外有三个方法API：
 
-```
 //判断这个adapter是否可以处理这类handler
 boolean supports(Object handler);
 //封装handler处理request的逻辑
 ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;
 long getLastModified(HttpServletRequest request, Object handler);
-```
 
 ## HandlerAdapter层次结构
 
@@ -42,87 +40,83 @@ HandlerAdapter的类层次结构如下：<br>
 	protected boolean supportsInternal(HandlerMethod handlerMethod) {
 		return true;
 	}
-
 ```
 
 ####handleInternal(扩展实现了handler方法)
-```
-	
-	@Override
-	protected final ModelAndView handleInternal(HttpServletRequest request,
-			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
-
-		//检查该handlerMethod是否使用了@SessionAttributes
-		if (getSessionAttributesHandler(handlerMethod).hasSessionAttributes()) {
-			// Always prevent caching in case of session attribute management.
-			checkAndPrepare(request, response, this.cacheSecondsForSessionAttributeHandlers, true);
-		}
-		else {
-			// Uses configured default cacheSeconds setting.
-			checkAndPrepare(request, response, true);
-		}
-
-		// Execute invokeHandlerMethod in synchronized block if required.
-		if (this.synchronizeOnSession) {
-			HttpSession session = request.getSession(false);
-			if (session != null) {
-				Object mutex = WebUtils.getSessionMutex(session);
-				synchronized (mutex) {
-					return invokeHandleMethod(request, response, handlerMethod);
-				}
-			}
-		}
-
-		return invokeHandleMethod(request, response, handlerMethod);
-	}
-```
-
 
 ```
+@Override
+protected final ModelAndView handleInternal(HttpServletRequest request,
+        HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
 
-	private ModelAndView invokeHandleMethod(HttpServletRequest request,
-			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
+    //检查该handlerMethod是否使用了@SessionAttributes
+    if (getSessionAttributesHandler(handlerMethod).hasSessionAttributes()) {
+        // Always prevent caching in case of session attribute management.
+        checkAndPrepare(request, response, this.cacheSecondsForSessionAttributeHandlers, true);
+    }
+    else {
+        // Uses configured default cacheSeconds setting.
+        checkAndPrepare(request, response, true);
+    }
 
-		ServletWebRequest webRequest = new ServletWebRequest(request, response);
+    // Execute invokeHandlerMethod in synchronized block if required.
+    if (this.synchronizeOnSession) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            Object mutex = WebUtils.getSessionMutex(session);
+            synchronized (mutex) {
+                return invokeHandleMethod(request, response, handlerMethod);
+            }
+        }
+    }
 
-		WebDataBinderFactory binderFactory = getDataBinderFactory(handlerMethod);
-		ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);
-		ServletInvocableHandlerMethod requestMappingMethod = createRequestMappingMethod(handlerMethod, binderFactory);
-
-		ModelAndViewContainer mavContainer = new ModelAndViewContainer();
-		mavContainer.addAllAttributes(RequestContextUtils.getInputFlashMap(request));
-		modelFactory.initModel(webRequest, mavContainer, requestMappingMethod);
-		mavContainer.setIgnoreDefaultModelOnRedirect(this.ignoreDefaultModelOnRedirect);
-
-		AsyncWebRequest asyncWebRequest = WebAsyncUtils.createAsyncWebRequest(request, response);
-		asyncWebRequest.setTimeout(this.asyncRequestTimeout);
-
-		final WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
-		asyncManager.setTaskExecutor(this.taskExecutor);
-		asyncManager.setAsyncWebRequest(asyncWebRequest);
-		asyncManager.registerCallableInterceptors(this.callableInterceptors);
-		asyncManager.registerDeferredResultInterceptors(this.deferredResultInterceptors);
-
-		if (asyncManager.hasConcurrentResult()) {
-			Object result = asyncManager.getConcurrentResult();
-			mavContainer = (ModelAndViewContainer) asyncManager.getConcurrentResultContext()[0];
-			asyncManager.clearConcurrentResult();
-
-			if (logger.isDebugEnabled()) {
-				logger.debug("Found concurrent result value [" + result + "]");
-			}
-			requestMappingMethod = requestMappingMethod.wrapConcurrentResult(result);
-		}
-
-		requestMappingMethod.invokeAndHandle(webRequest, mavContainer);
-
-		if (asyncManager.isConcurrentHandlingStarted()) {
-			return null;
-		}
-
-		return getModelAndView(mavContainer, modelFactory, webRequest);
-	}
+    return invokeHandleMethod(request, response, handlerMethod);
+}
 ```
 
+```
+private ModelAndView invokeHandleMethod(HttpServletRequest request,
+        HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
+
+    ServletWebRequest webRequest = new ServletWebRequest(request, response);
+
+    WebDataBinderFactory binderFactory = getDataBinderFactory(handlerMethod);
+    ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);
+    ServletInvocableHandlerMethod requestMappingMethod = createRequestMappingMethod(handlerMethod, binderFactory);
+
+    ModelAndViewContainer mavContainer = new ModelAndViewContainer();
+    mavContainer.addAllAttributes(RequestContextUtils.getInputFlashMap(request));
+    modelFactory.initModel(webRequest, mavContainer, requestMappingMethod);
+    mavContainer.setIgnoreDefaultModelOnRedirect(this.ignoreDefaultModelOnRedirect);
+
+    AsyncWebRequest asyncWebRequest = WebAsyncUtils.createAsyncWebRequest(request, response);
+    asyncWebRequest.setTimeout(this.asyncRequestTimeout);
+
+    final WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
+    asyncManager.setTaskExecutor(this.taskExecutor);
+    asyncManager.setAsyncWebRequest(asyncWebRequest);
+    asyncManager.registerCallableInterceptors(this.callableInterceptors);
+    asyncManager.registerDeferredResultInterceptors(this.deferredResultInterceptors);
+
+    if (asyncManager.hasConcurrentResult()) {
+        Object result = asyncManager.getConcurrentResult();
+        mavContainer = (ModelAndViewContainer) asyncManager.getConcurrentResultContext()[0];
+        asyncManager.clearConcurrentResult();
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Found concurrent result value [" + result + "]");
+        }
+        requestMappingMethod = requestMappingMethod.wrapConcurrentResult(result);
+    }
+
+    requestMappingMethod.invokeAndHandle(webRequest, mavContainer);
+
+    if (asyncManager.isConcurrentHandlingStarted()) {
+        return null;
+    }
+
+    return getModelAndView(mavContainer, modelFactory, webRequest);
+}
+```
 
 
