@@ -48,30 +48,31 @@ layout: default
         </div>
     </div>
 
-        <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1902410951&verifier=ddeb23bd&dpc=1"></iframe>
+    <div class="sidenav">
+        <iframe width="100%" height="100%" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=0&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2182114892&verifier=9d3ce531&dpc=1"></iframe>
     </div>
 
     <div class="sidenav">
-        <h2>Concurrency</h2>
+        <h2>Spring</h2>
         <ul class="artical-list">
-        {% for post in site.categories.concurrency%}
+        {% for post in site.categories.spring%}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>
         {% endfor %}
         </ul>
 
-        <h2>Scala</h2>
-        <ul class="artical-list">
-        {% for post in site.categories.scala%}
-            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endfor %}
-        </ul>
+        <!--<h2>cat</h2>-->
+        <!--<ul class="artical-list">-->
+        <!--{% for post in site.categories.cat%}-->
+            <!--<li><a href="{{ post.url }}">{{ post.title }}</a></li>-->
+        <!--{% endfor %}-->
+        <!--</ul>-->
 
-        <h2>Spark</h2>
-        <ul class="artical-list">
-        {% for post in site.categories.spark%}
-            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endfor %}
-        </ul>
+        <!--<h2>Spark</h2>-->
+        <!--<ul class="artical-list">-->
+        <!--{% for post in site.categories.spark%}-->
+            <!--<li><a href="{{ post.url }}">{{ post.title }}</a></li>-->
+        <!--{% endfor %}-->
+        <!--</ul>-->
     </div>
 </div>
 
