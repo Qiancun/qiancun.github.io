@@ -6,8 +6,6 @@ description: HandlerAdapter源码分析
 categories: spring
 ---
 
-#HandlerAdapter解析
-
 ##HandlerAdapter作用
 
 handlerAdapter是springmvc另一个重要的接口，它负责封装了handler的调用逻辑，对外有三个方法API：
