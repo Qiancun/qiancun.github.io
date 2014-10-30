@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: post
 title:  "springmvc-handlermapping解析"
 date:   2013-01-05 22:37:00
-categories: Note
+description: HandlerMapping源码分析
+categories: spring
 ---
 
 ## HanlerMaping
@@ -15,7 +16,7 @@ HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception;
 它的作用是将request映射到springmvc中的HandlerExecutionChain。HandlerExecutionChain是一个具体的类，里面包含一个Handler和一系列Interceptors。接口的好处在于扩展性上，开发者可以定义新的映射规则。
 
 再来看一下HanlderMapping的类层次结构图:<br>
-![icon](http://qiancun.github.io/pic/hanlderMapping.png)
+![image](http://qiancun.github.io/pic/hanlderMapping.png)
 
 * __AbstractHandlerMapping:__ 为HandlerMapping提供了基础实现，提供了默认的order、默认的handler、默认的interceptors，还有两个后面在url匹配时都要用到的类：UrlPathHelper，AntPathMatcher。
 * __AbstractUrlHandlerMapping:__ 提供了基于url-map规则的基础实现，同时支持了direct-match和Ant-Style match两种匹配方案。匹配规则是最长的是best match。
