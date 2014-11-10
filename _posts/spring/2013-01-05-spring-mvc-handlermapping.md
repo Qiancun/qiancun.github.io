@@ -7,7 +7,7 @@ categories: spring
 ---
 
 ## HanlerMaping
-`HandlerMapping`是一个接口，接口只有一个方法：
+`HandlerMapping`是一个接口，接口中包含一个方法：
 
 ```
 HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception;

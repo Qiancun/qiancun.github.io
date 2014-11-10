@@ -1,7 +1,7 @@
 _drafts/
 _site/
+images/_site/
+.idea/
 .DS_Store
 *.swp
-.idea/
 *.iml
-images/_site/

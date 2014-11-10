@@ -10,11 +10,13 @@ categories: spring
 
 handlerAdapter是springmvc另一个重要的接口，它负责封装了handler的调用逻辑，对外有三个方法API：
 
+```
 //判断这个adapter是否可以处理这类handler
 boolean supports(Object handler);
 //封装handler处理request的逻辑
 ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;
 long getLastModified(HttpServletRequest request, Object handler);
+```
 
 ## HandlerAdapter层次结构
 
