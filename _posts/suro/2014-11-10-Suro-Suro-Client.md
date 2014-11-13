@@ -17,3 +17,33 @@ suro client采用了连接池技术管理和server的连接。它至多保持一
 # 异步客户端
 开发者可以使用内存队列或者基于文件系统的队列实现。内存队列的吞吐量比文件队列高25%。然而，当suro client无法处理越来越多的message时，内存队列会丢弃message。相比这点，由于磁盘的特性，文件队列拥有一个更长的队列长度。文件队列的实现参考了bigqueue实现。
 
+# Suro 客户端配置
+值|描述|缺省值
+:---------------|:---------------|:---------------
+SuroClient.clientType|同步或者异步|异步
+SuroClient.connectionTimeout|连接服务器端的连接超时时间（毫秒）|5000
+SuroClient.retryCount|该数值表示消息没有被成功消费后的重试次数|5
+
+# 连接服务的负载均衡策略
+值|描述|缺省值
+:---------------|:---------------|:---------------
+SuroClient.loadBalancerType|static or eureka|
+SuroClient.loadBalancerServer|如果是静态策略，其值应该为一列hostname:port的值；若其值是eureka，那么值为Eureka服务器的地址|
+
+# 连接服务的超时配置
+值|描述|缺省值
+:---------------|:---------------|:---------------
+SuroClient.minimum.reconnect.timeInterval||90000
+SuroClient.reconnect.interval|客户端每发送240条message后会更新connection链接|240
+SuroClient.reconnect.timeInterval||30000
+
+# 异步客户端配置
+值|描述|缺省值
+:---------------|:---------------|:---------------
+SuroClient.asyncSenderThreads|发送线程的数目|3
+SuroClient.asyncBatchSize|当队列中的message到达200条时，客户端会发送这批messageet|200
+SuroClient.asyncTimeout||5000
+SuroClient.asyncQueueType||memory
+SuroClient.asyncMessageQueueCapacity||10000
+SuroClient.asyncJobQueueCapacity||async message queue capacity divided by async batch size
+SuroClient.asyncFilQueuePath|文件队列的地址|/logs/suroClient
