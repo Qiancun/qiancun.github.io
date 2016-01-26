@@ -5,7 +5,7 @@ layout: home
 <div class="index-content Spring">
     <div class="section">
         <ul class="artical-cate">
-            <li class="on" style="text-align:left"><a href="/"><span>Spring</span></a></li>
+            <li class="on" style="text-align:left"><a href="/"><span>articles</span></a></li>
         </ul>
 
         <div class="cate-bar"><span id="cateBar"></span></div>
